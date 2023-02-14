@@ -15,10 +15,10 @@
 
     </section>
     <section>
-      <div class="todo">
-        <p>Pasear al perro</p>
+      <div v-for="(todo,i) in todos" class="todo">
+        <p>{{ todo }}</p>
         <div>
-          <button class="remove-todo-btn">&times;</button>
+          <button @click="removeTodo(i)" class="remove-todo-btn">&times;</button>
         </div>
       </div>
 
@@ -41,8 +41,10 @@ const component ={
       console.log(this.todoTitle)
     },
     addTodo(e){
-      e.preventDefault();
       this.todos.push(this.todoTitle)
+    },
+    removeTodo(i){
+      this.todos.splice(i, 1);
     }
 
   }
