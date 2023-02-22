@@ -15,8 +15,8 @@
 
     </section>
     <section>
-      <div v-for="(todo,i) in todos" class="todo">
-        <p>{{ todo }}</p>
+      <div v-for="(todo,i) in todos" class="todo" :key="todo.id">
+        <p>{{ todo.title }}</p>
         <div>
           <button @click="removeTodo(i)" class="remove-todo-btn">&times;</button>
         </div>
@@ -41,7 +41,10 @@ const component ={
       console.log(this.todoTitle)
     },
     addTodo(e){
-      this.todos.push(this.todoTitle)
+      this.todos.push({
+        title: this.todoTitle,
+        id: Math.floor(Math.random() * 1000) 
+      })
     },
     removeTodo(i){
       this.todos.splice(i, 1);
